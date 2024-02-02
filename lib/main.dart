@@ -22,6 +22,7 @@ Future<void> initialiseHive() async {
   Hive.registerAdapter(PlatformAdapter());
   //box
   Box<Crypto> cryptoCacheBox = await Hive.openBox(AppConstant.cacheBox);
+  await Hive.openBox<Crypto>(AppConstant.favoritesBox);
   //repos
   CacheManager.cachedBox = cryptoCacheBox;
 }

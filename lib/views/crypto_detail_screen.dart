@@ -1,8 +1,12 @@
+import 'package:coin_app/controllers/favorite_controller.dart';
 import 'package:coin_app/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CryptoDetailScreen extends StatelessWidget {
-  const CryptoDetailScreen({Key? key, required this.crypto}) : super(key: key);
+  CryptoDetailScreen({Key? key, required this.crypto}) : super(key: key);
+
+  FavoritesController favoritesController = Get.put(FavoritesController());
 
   final Crypto crypto;
 
@@ -30,8 +34,16 @@ class CryptoDetailScreen extends StatelessWidget {
               height: 20,
             ),
             ElevatedButton(
-              onPressed: () {},
-              child: Text('Add to Favorites'),
+              onPressed: () {
+                favoritesController.toggleFavorite(crypto);
+              },
+              child: Obx(() {
+                return Text(
+                  favoritesController.isFavorite(crypto)
+                      ? 'Remove from Favorites'
+                      : 'Add to Favorites',
+                );
+              }),
             ),
           ],
         ),
