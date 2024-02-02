@@ -1,4 +1,5 @@
 import 'package:coin_app/controllers/current_crypto_currencies_controller.dart';
+import 'package:coin_app/views/crypto_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,6 +35,11 @@ class CurrentCryptoCurrenciesScreen extends StatelessWidget {
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 16),
                     ),
+                    onTap: () {
+                      Get.to(
+                        () => CryptoDetailScreen(crypto: crypto),
+                      );
+                    },
                   );
                 },
                 itemCount: controller.cryptoList.length,
